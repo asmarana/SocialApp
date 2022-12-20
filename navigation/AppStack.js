@@ -1,7 +1,7 @@
 import React from 'react';
-import {View} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -10,11 +10,12 @@ import ChatScreen from '../Screens/ChatScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
 import AddPostScreen from '../Screens/AddPostScreen';
 import { NOT_INITIALIZED_ERROR } from '@react-navigation/core/lib/typescript/src/createNavigationContainerRef';
+import MapScreen from '../Screens/MapScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const FeedStack = ({navigation}) => (
+const FeedStack = ({ navigation }) => (
   <Stack.Navigator >
     <Stack.Screen
       name="VFind"
@@ -29,9 +30,9 @@ const FeedStack = ({navigation}) => (
         headerStyle: {
           shadowColor: '#fff',
           elevation: 0,
-        },        
-      headerRight: () => (
-          <View style={{marginRight: 10}}>
+        },
+        headerRight: () => (
+          <View style={{ marginRight: 10 }}>
             <Feather
               name="plus"
               size={22}
@@ -56,7 +57,7 @@ const FeedStack = ({navigation}) => (
         },
         headerBackTitleVisible: false,
         headerBackImage: () => (
-          <View style={{marginLeft: 15}}>
+          <View style={{ marginLeft: 15 }}>
             <Ionicons name="arrow-back" size={25} color="#2e64e5" />
           </View>
         ),
@@ -78,7 +79,7 @@ const FeedStack = ({navigation}) => (
   </Stack.Navigator>
 );
 
-const MessageStack = ({navigation}) => (
+const MessageStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="Chat"
@@ -87,7 +88,7 @@ const MessageStack = ({navigation}) => (
   </Stack.Navigator>
 );
 
-const ProfileStack = ({navigation}) => (
+const ProfileStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="Profile"
@@ -111,7 +112,7 @@ const AppStack = () => {
         options={{
           headerShown: false,
           tabBarLabel: 'Home',
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Ionicons
               name="md-home-outline"
               color={color}
@@ -123,10 +124,23 @@ const AppStack = () => {
       <Tab.Screen
         name="Messages"
         component={ChatScreen}
-    options={{
-          tabBarIcon: ({color, size}) => (
+        options={{
+          tabBarIcon: ({ color, size }) => (
             <Ionicons
               name="md-chatbox-ellipses-outline"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Maps"
+        component={MapScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons
+              name="md-location-outline"
               color={color}
               size={size}
             />
@@ -137,12 +151,12 @@ const AppStack = () => {
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: ({ color, size }) => (
             <Feather
-            name="user"
-            color={color}
-            size={size}
-          />
+              name="user"
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
